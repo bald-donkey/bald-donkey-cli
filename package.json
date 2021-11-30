@@ -1,0 +1,27 @@
+{
+  "name": "bald-donkey-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "patch-package"
+  },
+  "bin": {
+    "bald-donkey-cli": "./bin/www.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "^0.24.0",
+    "commander": "^8.3.0",
+    "download-git-repo": "^3.0.2",
+    "inquirer": "^8.2.0",
+    "ncp": "^2.0.0",
+    "ora": "^5.4.0"
+  },
+  "dependencies": {
+    "patch-package": "^6.4.7"
+  }
+}
