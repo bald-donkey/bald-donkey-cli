@@ -5,7 +5,7 @@ const Inquirer = require('inquirer');
 const { promisify } = require('util');
 let downloadGitRepo = require('download-git-repo');
 downLoadGitRepo = promisify(downloadGitRepo);
-const { downloadDirectory } = require('./utils/constants');
+const { downloadDirectory } = require('./utils/constants.js');
 let ncp = require('ncp');
 ncp = promisify(ncp);
 
@@ -85,4 +85,6 @@ module.exports = async (projectName) => {
 
   // 4. 将下载的文件拷贝到当前执行命令的目录下
   await ncp(target, path.join(path.resolve(), projectName));
+
+  return
 }
