@@ -9,6 +9,11 @@ const { downloadDirectory } = require('./utils/constants.js');
 let ncp = require('ncp');
 ncp = promisify(ncp);
 
+// 添加对报错处理
+process.on('unhandledRejection', (reason, p) => {
+  // console.log('Promise: ', p, 'Reason: ', reason)
+  // do something
+})
 
 // ①. 获取仓库列表
 const fetchRepoList = async () => {
@@ -86,5 +91,6 @@ module.exports = async (projectName) => {
   // 4. 将下载的文件拷贝到当前执行命令的目录下
   await ncp(target, path.join(path.resolve(), projectName));
 
-  return
+  // return
+
 }
