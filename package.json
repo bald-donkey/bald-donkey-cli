@@ -1,10 +1,11 @@
 {
   "name": "bald-donkey-cli",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "patch-package"
   },
   "bin": {
     "bald-donkey-cli": "./bin/www.js"
@@ -17,8 +18,8 @@
     "commander": "^8.3.0",
     "download-git-repo": "^3.0.2",
     "inquirer": "^8.2.0",
-    "ncp": "^2.0.0",
     "ora": "^5.4.0",
+    "patch-package": "^6.4.7",
     "util": "^0.12.4"
   }
 }

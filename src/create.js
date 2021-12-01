@@ -5,13 +5,13 @@ const Inquirer = require('inquirer');
 const { promisify } = require('util');
 let downloadGitRepo = require('download-git-repo');
 downLoadGitRepo = promisify(downloadGitRepo);
-const { downloadDirectory } = require('./utils/constants.js');
-let ncp = require('ncp');
-ncp = promisify(ncp);
+// const { downloadDirectory } = require('./utils/constants.js');
+// let ncp = require('ncp');
+// ncp = promisify(ncp);
 
 // 添加对报错处理
 process.on('unhandledRejection', (reason, p) => {
-  // console.log('Promise: ', p, 'Reason: ', reason)
+  console.log('Promise: ', p, 'Reason: ', reason)
   // do something
 })
 
@@ -42,13 +42,17 @@ const fetchTagList = async (repo) => {
 }
 
 // ④. 下载项目
-const download = async (repo, tag) => {
-  let api = `https://api.github.com/repos/bald-donkey-cli/${repo}`; // 下载项目
+const download = async (repo, tag, projectName) => {
+  // const download = async (repo, tag) => {
+  let api = `bald-donkey-cli/${repo}`; // 下载项目
   if (tag) {
     api += `#${tag}`;
   }
-  const dest = `${downloadDirectory}/${repo}`;// 将模板下载到对应的目录中
+
+  const dest = path.resolve() + '\\' + projectName;
+  // const dest = `${downloadDirectory}/${repo}`;// 将模板下载到对应的目录中
   await downloadGitRepo(api, dest);
+
   return dest; // 返回下载目录
 };
 
@@ -86,11 +90,10 @@ module.exports = async (projectName) => {
   // console.log(tag);
 
   // 3. 下载项目 返回一个临时的存放目录
-  const target = await waitFetchAddLoading(download, 'download template ......')(repo, tag);
+  // const target = await waitFetchAddLoading(download, 'download template ......')(repo, tag);
+  await waitFetchAddLoading(download, 'download template ......')(repo, tag, projectName);
 
   // 4. 将下载的文件拷贝到当前执行命令的目录下
-  await ncp(target, path.join(path.resolve(), projectName));
-
-  // return
+  // await ncp(target, path.join(path.resolve(), projectName));
 
 }
